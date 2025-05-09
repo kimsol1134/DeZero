@@ -74,7 +74,7 @@ class Variable:
 
     def backward(self, retain_grad=False, create_graph=False): #역전파 비활성 모드 추가
         if self.grad is None:
-            self.grad = Variable(np.ones_like(self.data)) # grad를 Variable 객체로 변경
+            self.grad = Variable(np.ones_like(self.data)) # 1. grad를 Variable 객체로 변경
 
         funcs = []
         seen_set = set()
@@ -171,7 +171,7 @@ class Mul(Function):
         return y
 
     def backward(self, gy):
-        x0, x1 = self.inputs #Variable인스턴스 그대로 사용
+        x0, x1 = self.inputs #Variable인스턴스 그대로 사용 원래 self.inputs[0].data
         return gy * x1, gy * x0
 
 
@@ -242,7 +242,7 @@ class Pow(Function):
         return y
 
     def backward(self, gy):
-        x = self.inputs #Variable인스턴스 그대로 사용
+        x, = self.inputs #Variable인스턴스 그대로 사용
         c = self.c
 
         gx = c * x ** (c - 1) * gy
