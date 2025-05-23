@@ -132,6 +132,11 @@ def as_array(x):
     return x
 
 
+class Parameter(Variable):
+    pass
+
+
+
 class Function:
     def __call__(self, *inputs):
         inputs = [as_variable(x) for x in inputs]
