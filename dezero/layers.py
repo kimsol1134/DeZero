@@ -8,7 +8,7 @@ class Layer:
         self._params = set()
 
     def __setattr__(self, name, value): # 인스턴스 변수 설정할때 호출되는 특수 메서드, 이름이 name인 인스턴스 변수에 값으로 value를 전달
-        if isinstance(value, Parameter): # value가 Parameter 인스턴스라면
+        if isinstance(value, (Parameter, Layer)): # value가 Parameter 인스턴스라면, Layer도 추가
             self._params.add(name) # _params 인스턴스 변수에 매개변수 보관
         super().__setattr__(name, value)
 
@@ -25,7 +25,12 @@ class Layer:
 
     def params(self):
         for name in self._params: #layer 인스턴스에 담긴 parameter 인스턴스 꺼내줌
-            yield self.__dict__[name]
+            obj = self.__dict__[name]
+
+            if isinstance(obj, Layer): # Layer에서 매개변수 꺼내기
+                yield from obj.params() # Layer면 재귀적으로 obj.params호출
+            else :
+                yield obj
 
     def cleargrads(self): #cleargrad(S) layer가 가진 '모든' 매개변수에 대해 claergard 호출
         for param in self.params():
