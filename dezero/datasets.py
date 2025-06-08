@@ -11,7 +11,7 @@ from dezero.transforms import Compose, Flatten, ToFloat, Normalize
 class Dataset:
     def __init__(self, train=True, transform=None, target_transform=None):
         self.train = train
-        self.transform = transform
+        self.transform = transform # 데이터셋 전처리, 호출 가능한 객체
         self.target_transform = target_transform
         if self.transform is None:
             self.transform = lambda x: x
@@ -22,7 +22,7 @@ class Dataset:
         self.label = None
         self.prepare()
 
-    def __getitem__(self, index):
+    def __getitem__(self, index): # 지정된 인덱스에 위치하는 데이터 꺼냄
         assert np.isscalar(index)
         if self.label is None:
             return self.transform(self.data[index]), None
