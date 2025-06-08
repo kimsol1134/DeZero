@@ -2,6 +2,7 @@ import numpy as np
 import os
 from dezero import Variable
 import subprocess
+import urllib.request
 
 def _dot_var(v, verbose=False): #verbose True면 ndarray 인스턴스의 "형상","타입" 함께 출력
     dot_var = '{} [label="{}", color=orange, style=filled]\n'

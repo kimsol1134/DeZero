@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 from dezero.utils import get_file, cache_dir
 from dezero.transforms import Compose, Flatten, ToFloat, Normalize
 
-
 class Dataset:
     def __init__(self, train=True, transform=None, target_transform=None):
         self.train = train

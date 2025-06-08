@@ -275,6 +275,23 @@ class Softmax(Function):
 def softmax(x, axis=1):
     return Softmax(axis)(x)
 
+
+class ReLU(Function):
+    def forward(self, x):
+        y = np.maximum(x, 0.0)
+        return y
+
+    def backward(self, gy):
+        x, = self.inputs
+        mask = x.data > 0
+        gx = gy * mask
+        return gx
+
+
+def relu(x):
+    return ReLU()(x)
+
+
 # =============================================================================
 # loss function: mean_squared_error / softmax_cross_entropy / sigmoid_cross_entropy / binary_cross_entropy
 # =============================================================================
