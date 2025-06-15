@@ -14,11 +14,11 @@ if is_simple_core:
 
 else:
     from dezero.core import Variable
-    # from dezero.core import Parameter
+    from dezero.core import Parameter
     from dezero.core import Function
     from dezero.core import using_config
     from dezero.core import no_grad
-    # from dezero.core import test_mode
+    from dezero.core import test_mode
     from dezero.core import as_array
     from dezero.core import as_variable
     from dezero.core import setup_variable
@@ -29,14 +29,14 @@ else:
     from dezero.dataloaders import DataLoader
     # from dezero.dataloaders import SeqDataLoader
 
-    # import dezero.datasets
-    # import dezero.dataloaders
-    # import dezero.optimizers
-    # import dezero.functions
+    import dezero.datasets
+    import dezero.dataloaders
+    import dezero.optimizers
+    import dezero.functions
     # import dezero.functions_conv
-    # import dezero.layers
+    import dezero.layers
     import dezero.utils
-    # import dezero.cuda
+    import dezero.cuda
     # import dezero.transforms
 
 setup_variable()
